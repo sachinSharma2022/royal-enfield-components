@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pinned Scroll Animation</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        height: 680px;
+        overflow: hidden;
+        background: black url("/assets/illustration.jpg");
+        background-position: right;
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+
+      .container::before {
+        position: absolute;
+        content: '';
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 300px;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
+        /* background-color: red; */
+        z-index: 1;
+      }
+
+      .subtext {
+        font-size: 14px;
+        margin-right: 20px;
+      }
+
+      .text-list {
+        max-width: 80%;
+        width: 100%;
+        margin-top: -20vh;
+      }
+
+      .text-list p {
+        font-size: 24px;
+        color: #a6a6a6;
+        transition: all 0.3s ease;
+        max-width: 710px;
+        opacity: 0.6;
+        margin: 20px 0;
+      }
+
+      .highlight {
+        color: white !important;
+        transform: scale(1.2) translate(3.5vw);
+        opacity: 1 !important;
+      }
+
+      .one {
+        background: red;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="one"></section>
+    <section class="container">
+      <div class="text-list">
+        <p>One Day to ride with the world.</p>
+        <p>
+          From Argentina to Australia and everything in between. Move as one
+          with pride. For the freedom, the passion & Pure Motorcycling.
+        </p>
+        <p>
+          Prepare your best rider look and gather your friends. Or make new ones
+          on the road.
+        </p>
+        <p>One Day to ride with the world.</p>
+        <p>
+          From Argentina to Australia and everything in between. Move as one
+          with pride. For the freedom, the passion & Pure Motorcycling.
+        </p>
+        <p>
+          Prepare your best rider look and gather your friends. Or make new ones
+          on the road.
+        </p>
+        <p>
+          From Argentina to Australia and everything in between. Move as one
+          with pride. For the freedom, the passion & Pure Motorcycling.
+        </p>
+        <p>
+          Prepare your best rider look and gather your friends. Or make new ones
+          on the road.
+        </p>
+        <p>One Day to ride with the world.</p>
+        <p>
+          From Argentina to Australia and everything in between. Move as one
+          with pride. For the freedom, the passion & Pure Motorcycling.
+        </p>
+        <p>
+          Prepare your best rider look and gather your friends. Or make new ones
+          on the road.
+        </p>
+      </div>
+    </section>
+    <section class="one"></section>
+
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+      gsap.registerPlugin(ScrollTrigger);
+
+      const textList = document.querySelector(".text-list");
+      const items = document.querySelectorAll(".text-list p");
+
+      const listHeight = textList.scrollHeight;
+      const windowHeight = window.innerHeight;
+      const startOffset = windowHeight / 2 - items[0].offsetHeight / 2;
+
+      gsap.set(textList, { y: startOffset });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".container",
+          start: "top top",
+          end: "+=150%",
+          scrub: true,
+          pin: true,
+          markers: true,
+        },
+      });
+
+      tl.to(textList, {
+        y: () => -(listHeight - windowHeight / 2),
+        ease: "none",
+        onUpdate: highlightCenterItem,
+        onStart: highlightCenterItem,
+      });
+
+      function highlightCenterItem() {
+        const container = document.querySelector(".container");
+        const containerRect = container.getBoundingClientRect();
+        const center = containerRect.top + containerRect.height / 2;
+        let closest = null;
+        let closestDistance = Infinity;
+
+        items.forEach((item) => {
+          const rect = item.getBoundingClientRect();
+          const distance = Math.abs(rect.top + rect.height / 3 - center);
+
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closest = item;
+          }
+        });
+
+        items.forEach((item) => item.classList.remove("highlight"));
+        if (closest) closest.classList.add("highlight");
+      }
+
+      highlightCenterItem();
+    </script>
+  </body>
+</html>
