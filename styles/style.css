@@ -1,0 +1,126 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  height: 100%;
+  font-family: "Montserrat", sans-serif;
+  background-color: black;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Guardian Sans", sans-serif;
+}
+
+.motoverse-years {
+  margin: 0 auto;
+  padding: 67px 0;
+}
+.motoverse-years h2 {
+  margin-bottom: 53px;
+  font-size: 40px;
+  line-height: 48px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  color: white;
+  text-align: center;
+}
+.motoverse-years .image-swiper {
+  width: 100%;
+  margin-bottom: 40px;
+  overflow: hidden;
+}
+.motoverse-years .image-swiper .image-slider {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 0px;
+}
+.motoverse-years .image-swiper .image-slider .img-box {
+  height: 186px;
+  width: 261px;
+  transition: all 0.3s ease-in-out;
+}
+.motoverse-years .image-swiper .image-slider .img-box img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.motoverse-years .image-swiper .image-slider h4 {
+  color: white;
+  font-size: 40px;
+  line-height: 48px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  margin-bottom: 35px;
+  opacity: 0.3;
+}
+.motoverse-years .image-swiper .swiper-slide-active.image-slider {
+  padding: 20px;
+  margin-top: -20px;
+}
+.motoverse-years .image-swiper .swiper-slide-active .img-box {
+  width: 317px;
+  height: 226px;
+}
+.motoverse-years .image-swiper .swiper-slide-active h4 {
+  opacity: 1;
+  margin-bottom: 15px;
+}
+.motoverse-years .swiper-content {
+  max-width: 600px;
+  text-align: center;
+}
+.motoverse-years .swiper-content h4 {
+  color: white;
+  font-size: 32px;
+  line-height: 38px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  margin-bottom: 10px;
+}
+.motoverse-years .swiper-content .strong-text {
+  color: white;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.motoverse-years .swiper-content .description {
+  color: #a6a6a6;
+  font-size: 14px;
+  line-height: 21px;
+}
+.motoverse-years .blurred-bg-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  opacity: 0.3;
+}
+.motoverse-years .blurred-bg {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  filter: blur(100px);
+  transform: scale(1);
+  transition: opacity 0.6s ease;
+  opacity: 1;
+}
+.motoverse-years .heading {
+  position: relative;
+  width: 100%;
+  bottom: 0;
+  font-size: 218px;
+  font-weight: 500;
+  text-align: center;
+}/*# sourceMappingURL=style.css.map */
