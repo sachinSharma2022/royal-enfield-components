@@ -3,28 +3,808 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Top Events</title>
+
+    <!-- Fonts -->
     <link
       href="https://fonts.cdnfonts.com/css/guardian-sans"
       rel="stylesheet"
     />
-
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
 
-    <title>Document</title>
-    <link rel="stylesheet" href="styles/style.css" />
-
-    <!-- Link Swiper's CSS -->
+    <!-- Swiper CSS -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
+
+    <!-- Style -->
+    <style>
+      body {
+        margin: 0;
+        font-family: "Montserrat", sans-serif;
+        background-color: #121212;
+      }
+
+      .motoverse-top-events {
+        padding: 64px 0;
+      }
+
+      h1 {
+        font-size: 40px;
+        line-height: 48px;
+        letter-spacing: 0.8px;
+        font-weight: 600;
+        color: white;
+      }
+
+      .top-events {
+        max-width: 80%;
+        margin: 0 auto;
+      }
+
+      .head-section {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .view-all-btn {
+        font-size: 16px;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: #da291c;
+        text-decoration: none;
+      }
+
+      .tab-primary {
+        display: flex;
+        justify-content: space-between;
+        margin-block: 40px;
+        height: 33px;
+        position: relative;
+        color: white;
+      }
+
+      .tab-primary::before {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: #373737;
+        content: "";
+        z-index: -1;
+      }
+
+      .day {
+        width: 100%;
+        text-align: center;
+        cursor: pointer;
+        padding-bottom: 8px;
+      }
+
+      .day.active {
+        border-bottom: 2px solid #da291c;
+      }
+
+      .filter-btn {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 56px;
+      }
+
+      .filter-btn button {
+        background-color: #181818;
+        padding: 12px 20px;
+        color: #ffffff;
+        font-size: 14px;
+        border: 1px solid transparent;
+        cursor: pointer;
+      }
+
+      .filter-btn button.active {
+        background-color: #403b2a;
+        border-color: #847543;
+      }
+
+      .event-section {
+        display: none;
+      }
+
+      .event-section.active {
+        display: block;
+      }
+
+      .tab-panel {
+        display: none;
+      }
+
+      .tab-panel.active {
+        display: block;
+      }
+
+      .event-block {
+        display: none;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 20px;
+        row-gap: 30px;
+        width: 100%;
+      }
+
+      .event-block.active {
+        display: grid;
+      }
+
+      .event-items {
+        position: relative;
+      }
+
+      .event-items .img-box {
+        height: 442px;
+        width: 100%;
+      }
+
+      .event-items .img-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .event-items .event-content {
+        position: absolute;
+        bottom: 0;
+        background: linear-gradient(
+          360deg,
+          rgba(0, 0, 0, 0.8) 70.98%,
+          rgba(33, 33, 33, 0) 100%
+        );
+        padding: 16px;
+        height: 348px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+
+      .event-title {
+        font-size: 20px;
+        font-weight: 600;
+        color: white;
+        margin: 0;
+      }
+
+      .event-list {
+        margin-bottom: 16px;
+        font-size: 14px;
+        font-weight: 600;
+        color: white;
+        display: flex;
+        align-items: center;
+      }
+
+      .event-list img {
+        margin: 0 5px;
+        position: relative;
+        top: 2px;
+      }
+
+      .event-time {
+        color: #a6a6a6;
+        font-weight: normal;
+      }
+
+      .event-description {
+        font-size: 14px;
+        color: #a6a6a6;
+      }
+
+      .socia-sec {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 11px;
+      }
+
+      .social-links {
+        display: flex;
+        align-items: center;
+        gap: 19px;
+      }
+
+      @media only screen and (max-width: 767px) {
+        .top-events {
+          max-width: 100%;
+          padding: 20px;
+          overflow: hidden;
+        }
+
+        h1 {
+          font-size: 28px;
+          line-height: 32px;
+        }
+
+        .filter-btn {
+          overflow-x: scroll;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+
+        .filter-btn button {
+          white-space: nowrap;
+        }
+
+        .event-items {
+          min-width: 85vw;
+        }
+
+        .event-list {
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+
+        .event-section.active {
+          overflow-x: scroll;
+          margin-right: -20px;
+        }
+        .event-section {
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+
+        .event-section::-webkit-scrollbar,
+        .filter-btn::-webkit-scrollbar {
+          width: 0;
+          height: 0;
+        }
+      }
+    </style>
   </head>
   <body>
-    <section class="motoverse-years">
-      
+    <section class="motoverse-top-events">
+      <div class="top-events">
+        <div class="head-section">
+          <h1>Top Events</h1>
+          <a href="#" class="view-all-btn">View All &nbsp; ></a>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tab-primary">
+          <div class="day active" data-day="1">Day 1</div>
+          <div class="day" data-day="2">Day 2</div>
+          <div class="day" data-day="3">Day 3</div>
+        </div>
+
+        <div class="tab-content">
+          <!-- Day 1 Content -->
+          <div class="tab-panel active" data-day="1">
+            <div class="filter-btn">
+              <button class="active" data-category="Motothrill">
+                Motothrill
+              </button>
+              <button data-category="Motosonic">Motosonic</button>
+              <button data-category="Motoreel">Motoreel</button>
+              <button data-category="MusicConcerts">Music Concerts</button>
+            </div>
+            <div class="event-section">
+              <div class="event-block" data-category="Motothrill">
+                <div class="event-items">
+                  <div class="img-box">
+                    <img
+                      src="https://images.unsplash.com/photo-1657013232106-5ea966088634?q=80&w=627&auto=format&fit=crop"
+                      alt=""
+                    />
+                  </div>
+                  <div class="event-content">
+                    <div class="socia-sec">
+                      <h4 class="event-title">Dirt Racing</h4>
+
+                      <div class="social-links">
+                        <a href=""><img src="/assets/action.svg" alt="" /></a>
+                        <a href=""><img src="/assets/share.svg" alt="" /></a>
+                      </div>
+                    </div>
+
+                    <div class="event-list">
+                      <span>
+                        <img src="/assets/communication.svg" alt="" />
+                        Motothrill •</span
+                      >
+                      <span class="event-time">
+                        <img src="/assets/clock.svg" alt="" />10:00AM -
+                        12:00PM</span
+                      >
+                    </div>
+                    <div class="event-description">
+                      Dirt bike racing is a fast-paced off-road sport with
+                      jumps, turns, and rugged terrain.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="event-items">
+                  <div class="img-box">
+                    <img
+                      src="https://images.unsplash.com/photo-1699967701263-0ebeae97f2fc?q=80&w=735&auto=format&fit=crop"
+                      alt=""
+                    />
+                  </div>
+                  <div class="event-content">
+                    <div class="socia-sec">
+                      <h4 class="event-title">Dirt Racing</h4>
+
+                      <div class="social-links">
+                        <a href=""><img src="/assets/action.svg" alt="" /></a>
+                        <a href=""><img src="/assets/share.svg" alt="" /></a>
+                      </div>
+                    </div>
+
+                    <div class="event-list">
+                      <span>
+                        <img src="/assets/communication.svg" alt="" />
+                        Motothrill •</span
+                      >
+                      <span class="event-time">
+                        <img src="/assets/clock.svg" alt="" />10:00AM -
+                        12:00PM</span
+                      >
+                    </div>
+                    <div class="event-description">
+                      Dirt bike racing is a fast-paced off-road sport with
+                      jumps, turns, and rugged terrain.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="event-items">
+                  <div class="img-box">
+                    <img
+                      src="https://images.unsplash.com/photo-1614152412509-7a5afc18c75b?q=80&w=627&auto=format&fit=crop"
+                      alt=""
+                    />
+                  </div>
+                  <div class="event-content">
+                    <div class="socia-sec">
+                      <h4 class="event-title">Dirt Racing</h4>
+
+                      <div class="social-links">
+                        <a href=""><img src="/assets/action.svg" alt="" /></a>
+                        <a href=""><img src="/assets/share.svg" alt="" /></a>
+                      </div>
+                    </div>
+
+                    <div class="event-list">
+                      <span>
+                        <img src="/assets/communication.svg" alt="" />
+                        Motothrill •</span
+                      >
+                      <span class="event-time">
+                        <img src="/assets/clock.svg" alt="" />10:00AM -
+                        12:00PM</span
+                      >
+                    </div>
+                    <div class="event-description">
+                      Dirt bike racing is a fast-paced off-road sport with
+                      jumps, turns, and rugged terrain.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="event-block" data-category="Motosonic">
+                <div class="event-items">
+                  <div class="img-box">
+                    <img
+                      src="https://images.unsplash.com/photo-1668335408141-ea5c49cc1912?q=80&w=736&auto=format&fit=crop"
+                      alt=""
+                    />
+                  </div>
+                  <div class="event-content">
+                    <div class="socia-sec">
+                      <h4 class="event-title">Dirt Racing</h4>
+
+                      <div class="social-links">
+                        <a href=""><img src="/assets/action.svg" alt="" /></a>
+                        <a href=""><img src="/assets/share.svg" alt="" /></a>
+                      </div>
+                    </div>
+
+                    <div class="event-list">
+                      <span>
+                        <img src="/assets/communication.svg" alt="" />
+                        Motothrill •</span
+                      >
+                      <span class="event-time">
+                        <img src="/assets/clock.svg" alt="" />10:00AM -
+                        12:00PM</span
+                      >
+                    </div>
+                    <div class="event-description">
+                      Dirt bike racing is a fast-paced off-road sport with
+                      jumps, turns, and rugged terrain.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="event-items">
+                  <div class="img-box">
+                    <img
+                      src="https://images.unsplash.com/photo-1701444749157-62cecf8a5c8a?q=80&w=686&auto=format&fit=crop"
+                      alt=""
+                    />
+                  </div>
+                  <div class="event-content">
+                    <div class="socia-sec">
+                      <h4 class="event-title">Dirt Racing</h4>
+
+                      <div class="social-links">
+                        <a href=""><img src="/assets/action.svg" alt="" /></a>
+                        <a href=""><img src="/assets/share.svg" alt="" /></a>
+                      </div>
+                    </div>
+
+                    <div class="event-list">
+                      <span>
+                        <img src="/assets/communication.svg" alt="" />
+                        Motothrill •</span
+                      >
+                      <span class="event-time">
+                        <img src="/assets/clock.svg" alt="" />10:00AM -
+                        12:00PM</span
+                      >
+                    </div>
+                    <div class="event-description">
+                      Dirt bike racing is a fast-paced off-road sport with
+                      jumps, turns, and rugged terrain.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="event-items">
+                  <div class="img-box">
+                    <img
+                      src="https://images.unsplash.com/photo-1728410943628-151561e5fb87?q=80&w=627&auto=format&fit=crop"
+                      alt=""
+                    />
+                  </div>
+                  <div class="event-content">
+                    <div class="socia-sec">
+                      <h4 class="event-title">Dirt Racing</h4>
+
+                      <div class="social-links">
+                        <a href=""><img src="/assets/action.svg" alt="" /></a>
+                        <a href=""><img src="/assets/share.svg" alt="" /></a>
+                      </div>
+                    </div>
+
+                    <div class="event-list">
+                      <span>
+                        <img src="/assets/communication.svg" alt="" />
+                        Motothrill •</span
+                      >
+                      <span class="event-time">
+                        <img src="/assets/clock.svg" alt="" />10:00AM -
+                        12:00PM</span
+                      >
+                    </div>
+                    <div class="event-description">
+                      Dirt bike racing is a fast-paced off-road sport with
+                      jumps, turns, and rugged terrain.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Day 2 Content -->
+          <div class="tab-panel" data-day="2">
+            <div class="filter-btn">
+              <button class="active" data-category="Motothrill">
+                Motothrill
+              </button>
+              <button data-category="Motosonic">Motosonic</button>
+              <button data-category="Motoreel">Motoreel</button>
+              <button data-category="MusicConcerts">Music Concerts</button>
+            </div>
+            <div class="event-section">
+              <div class="event-block" data-category="Motothrill">
+                <div class="event-items">
+                  <div class="img-box">
+                    <img
+                      src="https://images.unsplash.com/photo-1601574013379-a98bfb813376?q=80&w=687&auto=format&fit=crop"
+                      alt=""
+                    />
+                  </div>
+                  <div class="event-content">
+                    <div class="socia-sec">
+                      <h4 class="event-title">Dirt Racing</h4>
+
+                      <div class="social-links">
+                        <a href=""><img src="/assets/action.svg" alt="" /></a>
+                        <a href=""><img src="/assets/share.svg" alt="" /></a>
+                      </div>
+                    </div>
+
+                    <div class="event-list">
+                      <span>
+                        <img src="/assets/communication.svg" alt="" />
+                        Motothrill •
+                      </span>
+                      <span class="event-time">
+                        <img src="/assets/clock.svg" alt="" />10:00AM -
+                        12:00PM</span
+                      >
+                    </div>
+                    <div class="event-description">
+                      Dirt bike racing is a fast-paced off-road sport with
+                      jumps, turns, and rugged terrain.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="event-items">
+                  <div class="img-box">
+                    <img
+                      src="https://images.unsplash.com/photo-1699967701263-0ebeae97f2fc?q=80&w=735&auto=format&fit=crop"
+                      alt=""
+                    />
+                  </div>
+                  <div class="event-content">
+                    <div class="socia-sec">
+                      <h4 class="event-title">Dirt Racing</h4>
+
+                      <div class="social-links">
+                        <a href=""><img src="/assets/action.svg" alt="" /></a>
+                        <a href=""><img src="/assets/share.svg" alt="" /></a>
+                      </div>
+                    </div>
+
+                    <div class="event-list">
+                      <span>
+                        <img src="/assets/communication.svg" alt="" />
+                        Motothrill •</span
+                      >
+                      <span class="event-time">
+                        <img src="/assets/clock.svg" alt="" />10:00AM -
+                        12:00PM</span
+                      >
+                    </div>
+                    <div class="event-description">
+                      Dirt bike racing is a fast-paced off-road sport with
+                      jumps, turns, and rugged terrain.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="event-items">
+                  <div class="img-box">
+                    <img
+                      src="https://images.unsplash.com/photo-1614152412509-7a5afc18c75b?q=80&w=627&auto=format&fit=crop"
+                      alt=""
+                    />
+                  </div>
+                  <div class="event-content">
+                    <div class="socia-sec">
+                      <h4 class="event-title">Dirt Racing</h4>
+
+                      <div class="social-links">
+                        <a href=""><img src="/assets/action.svg" alt="" /></a>
+                        <a href=""><img src="/assets/share.svg" alt="" /></a>
+                      </div>
+                    </div>
+
+                    <div class="event-list">
+                      <span>
+                        <img src="/assets/communication.svg" alt="" />
+                        Motothrill •</span
+                      >
+                      <span class="event-time">
+                        <img src="/assets/clock.svg" alt="" />10:00AM -
+                        12:00PM</span
+                      >
+                    </div>
+                    <div class="event-description">
+                      Dirt bike racing is a fast-paced off-road sport with
+                      jumps, turns, and rugged terrain.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Day 2 Content -->
+          <div class="tab-panel" data-day="3">
+            <div class="filter-btn">
+              <button class="active" data-category="Motothrill">
+                Motothrill
+              </button>
+              <button data-category="Motosonic">Motosonic</button>
+              <button data-category="Motoreel">Motoreel</button>
+              <button data-category="MusicConcerts">Music Concerts</button>
+            </div>
+            <div class="event-section">
+              <div class="event-block" data-category="Motothrill">
+                <div class="event-items">
+                  <div class="img-box">
+                    <img
+                      src="https://images.unsplash.com/photo-1599382266831-50a19097d81d?q=80&w=626&auto=format&fit=crop"
+                      alt=""
+                    />
+                  </div>
+                  <div class="event-content">
+                    <div class="socia-sec">
+                      <h4 class="event-title">Dirt Racing</h4>
+
+                      <div class="social-links">
+                        <a href=""><img src="/assets/action.svg" alt="" /></a>
+                        <a href=""><img src="/assets/share.svg" alt="" /></a>
+                      </div>
+                    </div>
+
+                    <div class="event-list">
+                      <span>
+                        <img src="/assets/communication.svg" alt="" />
+                        Motothrill •</span
+                      >
+                      <span class="event-time">
+                        <img src="/assets/clock.svg" alt="" />10:00AM -
+                        12:00PM</span
+                      >
+                    </div>
+                    <div class="event-description">
+                      Dirt bike racing is a fast-paced off-road sport with
+                      jumps, turns, and rugged terrain.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="event-items">
+                  <div class="img-box">
+                    <img
+                      src="https://images.unsplash.com/photo-1699967701263-0ebeae97f2fc?q=80&w=735&auto=format&fit=crop"
+                      alt=""
+                    />
+                  </div>
+                  <div class="event-content">
+                    <div class="socia-sec">
+                      <h4 class="event-title">Dirt Racing</h4>
+
+                      <div class="social-links">
+                        <a href=""><img src="/assets/action.svg" alt="" /></a>
+                        <a href=""><img src="/assets/share.svg" alt="" /></a>
+                      </div>
+                    </div>
+
+                    <div class="event-list">
+                      <span>
+                        <img src="/assets/communication.svg" alt="" />
+                        Motothrill •</span
+                      >
+                      <span class="event-time">
+                        <img src="/assets/clock.svg" alt="" />10:00AM -
+                        12:00PM</span
+                      >
+                    </div>
+                    <div class="event-description">
+                      Dirt bike racing is a fast-paced off-road sport with
+                      jumps, turns, and rugged terrain.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="event-items">
+                  <div class="img-box">
+                    <img
+                      src="https://images.unsplash.com/photo-1614152412509-7a5afc18c75b?q=80&w=627&auto=format&fit=crop"
+                      alt=""
+                    />
+                  </div>
+                  <div class="event-content">
+                    <div class="socia-sec">
+                      <h4 class="event-title">Dirt Racing</h4>
+
+                      <div class="social-links">
+                        <a href=""><img src="/assets/action.svg" alt="" /></a>
+                        <a href=""><img src="/assets/share.svg" alt="" /></a>
+                      </div>
+                    </div>
+
+                    <div class="event-list">
+                      <span>
+                        <img src="/assets/communication.svg" alt="" />
+                        Motothrill •</span
+                      >
+                      <span class="event-time">
+                        <img src="/assets/clock.svg" alt="" />10:00AM -
+                        12:00PM</span
+                      >
+                    </div>
+                    <div class="event-description">
+                      Dirt bike racing is a fast-paced off-road sport with
+                      jumps, turns, and rugged terrain.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
+
+    <!-- JavaScript -->
+    <script>
+      const dayTabs = document.querySelectorAll(".day");
+      const tabPanels = document.querySelectorAll(".tab-panel");
+
+      let activeDay = "1";
+      let activeCategory = "";
+
+      function filterEvents(panel) {
+        const eventSection = panel.querySelector(".event-section");
+        const eventBlocks = panel.querySelectorAll(".event-block");
+
+        // Show the event section
+        eventSection.classList.add("active");
+
+        eventBlocks.forEach((block) => {
+          const category = block.getAttribute("data-category");
+          block.style.display = category === activeCategory ? "grid" : "none";
+        });
+      }
+
+      dayTabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          // Switch active tab
+          document.querySelector(".day.active")?.classList.remove("active");
+          tab.classList.add("active");
+
+          activeDay = tab.getAttribute("data-day");
+
+          // Switch tab panels
+          tabPanels.forEach((panel) => {
+            panel.classList.remove("active");
+          });
+
+          const activePanel = document.querySelector(
+            `.tab-panel[data-day="${activeDay}"]`
+          );
+          activePanel.classList.add("active");
+
+          // Activate first filter
+          const firstFilter = activePanel.querySelector(".filter-btn button");
+          activePanel
+            .querySelectorAll(".filter-btn button")
+            .forEach((btn) => btn.classList.remove("active"));
+          if (firstFilter) {
+            firstFilter.classList.add("active");
+            activeCategory = firstFilter.getAttribute("data-category");
+            filterEvents(activePanel);
+          }
+        });
+      });
+
+      // Setup filter buttons for each panel
+      tabPanels.forEach((panel) => {
+        const filterBtns = panel.querySelectorAll(".filter-btn button");
+        filterBtns.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            panel
+              .querySelectorAll(".filter-btn button")
+              .forEach((b) => b.classList.remove("active"));
+            btn.classList.add("active");
+            activeCategory = btn.getAttribute("data-category");
+            filterEvents(panel);
+          });
+        });
+      });
+
+      // Initial load
+      document.querySelector(".day.active")?.click();
+    </script>
   </body>
 </html>
