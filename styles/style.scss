@@ -1,3 +1,94 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+// Font Start
+@font-face {
+  font-display: swap;
+  font-family: GuardianSansXCond Bold;
+  font-style: normal;
+  font-weight: 700;
+  src: url("../font/GuardianSansXCond-Bold.otf");
+  src: url("../font/GuardianSansXCond-Bold.otf#iefix") format("opentype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: GuardianSansXCond Semibold;
+  font-style: normal;
+  font-weight: 600;
+  src: url("../font/GuardianSansXCond-Semibold.otf");
+  src: url("../font/GuardianSansXCond-Semibold.otf#iefix") format("opentype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: GuardianSansXCond Medium;
+  font-style: normal;
+  font-weight: 500;
+  src: url("../font/GuardianSansXCond-Medium.otf");
+  src: url("../font/GuardianSansXCond-Medium.otf#iefix") format("opentype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: GuardianSansXCond Regular;
+  font-style: normal;
+  font-weight: 400;
+  src: url("../font/GuardianSansXCond-Regular.otf");
+  src: url("../font/GuardianSansXCond-Regular.otf#iefix") format("opentype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: Montserrat Light;
+  font-style: normal;
+  font-weight: 400;
+  src: url("../font/Montserrat-Light.ttf");
+  src: url("../font/Montserrat-Light.ttf#iefix") format("truetype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: Montserrat Regular;
+  font-style: normal;
+  font-weight: 500;
+  src: url("../font/Montserrat--Regular.ttf");
+  src: url("../font/Montserrat--Regular.ttf#iefix") format("truetype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: Montserrat Semibold;
+  font-style: normal;
+  font-weight: 600;
+  src: url("../font/Montserrat-SemiBold.ttf");
+  src: url("../font/Montserrat-SemiBold.ttf#iefix") format("truetype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: Montserrat Bold;
+  font-style: normal;
+  font-weight: 700;
+  src: url("../font/Montserrat-Bold.ttf");
+  src: url("../font/Montserrat-Bold.ttf#iefix") format("truetype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: Reicons;
+  font-style: normal;
+  font-weight: 400;
+  src: url("../font/reicons.ttf#iefix") format("truetype");
+}
+
+// Font End
+
 * {
   padding: 0;
   margin: 0;
@@ -13,27 +104,96 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: "Guardian Sans", sans-serif;
+  font-family: GuardianSansXCond Semibold;
+}
+
+.blank {
+  height: 100vh;
+  background-color: #a6a6a6;
 }
 
 .motoverse-years {
   margin: 0 auto;
-  padding: 67px 0;
+  overflow: hidden;
+  position: relative;
+  min-height: 100vh;
 
-  h2 {
-    margin-bottom: 53px;
+  @media only screen and (max-width: 767px) {
+    height: auto;
+  }
+
+  .inner-section {
+    max-width: 80%;
+    margin: 0 auto;
+
+    @media only screen and (max-width: 767px) {
+      max-width: 100%;
+      padding-inline: 20px;
+    }
+  }
+
+  .main-heading {
+    margin-bottom: 40px;
     font-size: 40px;
     line-height: 48px;
     font-weight: 500;
     letter-spacing: 0.8px;
     color: white;
     text-align: center;
+    margin-top: 67px;
+
+    @media only screen and (max-width: 767px) {
+      font-size: 28px;
+      line-height: 32px;
+      margin-bottom: 24px;
+      margin-top: 32px;
+    }
+  }
+
+  .inner-footer-section {
+    position: relative;
+    width: 100%;
+    max-width: 80%;
+    margin: 0 auto;
+
+    @media only screen and (max-width: 767px) {
+      max-width: 100%;
+      padding-inline: 20px;
+    }
+
+    .heading {
+      font-size: 218px;
+      font-weight: 500;
+      opacity: 0.6;
+      letter-spacing: 0.8px;
+      color: white;
+      text-align: center;
+
+      @media only screen and (max-width: 767px) {
+        font-size: 56px;
+        position: relative;
+        bottom: 0;
+      }
+    }
+  }
+
+  .slider-section {
+    position: relative;
+    height: 100%;
+    min-height: 560px;
   }
 
   .image-swiper {
     width: 100%;
     margin-bottom: 40px;
     overflow: hidden;
+
+    .swiper-wrapper {
+      @media only screen and (max-width: 767px) {
+        display: flex;
+        align-items: center;
+      }
+    }
 
     .image-slider {
       display: flex;
@@ -43,7 +203,7 @@ h4 {
 
       .img-box {
         height: 186px;
-        width: 261px;
+        width: 100%;
         transition: all 0.3s ease-in-out;
 
         img {
@@ -61,16 +221,16 @@ h4 {
         letter-spacing: 0.8px;
         margin-bottom: 35px;
         opacity: 0.3;
+
+        @media only screen and (max-width: 767px) {
+          margin-bottom: 16px;
+        }
       }
     }
 
     .swiper-slide-active {
-      &.image-slider {
-        padding: 20px;
-        margin-top: -20px;
-      }
       .img-box {
-        width: 317px;
+        width: 100%;
         height: 226px;
       }
 
@@ -83,8 +243,26 @@ h4 {
 
   // swiper-content
   .swiper-content {
-    max-width: 600px;
+    max-width: 1076px;
     text-align: center;
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 320px;
+
+    @media only screen and (min-width: 1500px) {
+      top: 350px;
+    }
+
+    .content-section {
+      max-width: 600px;
+      margin: 0 auto;
+
+      @media only screen and (max-width: 767px) {
+        padding-inline: 20px;
+      }
+    }
 
     h4 {
       color: white;
@@ -93,6 +271,11 @@ h4 {
       font-weight: 500;
       letter-spacing: 0.8px;
       margin-bottom: 10px;
+
+      @media only screen and (max-width: 767px) {
+        font-size: 24px;
+        line-height: 28px;
+      }
     }
 
     .strong-text {
@@ -101,12 +284,14 @@ h4 {
       line-height: 24px;
       font-weight: 500;
       margin-bottom: 10px;
+      font-family: Montserrat Semibold;
     }
 
     .description {
       color: #a6a6a6;
       font-size: 14px;
       line-height: 21px;
+      font-family: Montserrat Regular;
     }
   }
 
@@ -131,12 +316,50 @@ h4 {
     opacity: 1;
   }
 
-  .heading {
-    position: relative;
-    width: 100%;
+  &::before {
+    content: "";
+    position: absolute;
     bottom: 0;
-    font-size: 218px;
-    font-weight: 500;
-    text-align: center;
+    left: 0;
+    width: 100%;
+    height: 540px;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 26.07%,
+      #000000 90.08%
+    );
+    z-index: 1;
+  }
+
+  .arrow-custom {
+    width: 54px;
+    height: 54px;
+    background: rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(11.365px);
+    border-radius: 100px;
+
+    @media only screen and (max-width: 767px) {
+      display: none;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 100px;
+      padding: 1.23px;
+      background: linear-gradient(-40deg, rgba(255, 255, 255, 0.2), #fff);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    &::after {
+      font-size: 14px;
+      color: white;
+    }
   }
 }
