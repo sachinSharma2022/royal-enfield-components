@@ -18,7 +18,7 @@
 
 <body>
   <section class="blank"></section>
-  <section class="motoverse-years">
+  <section class="motoverse-throughout">
     <div class="inner-section">
       <h2 class="main-heading">Motovers throughout the years</h2>
     </div>
@@ -28,9 +28,12 @@
           <div class="swiper-slide image-slider">
             <h4>2012</h4>
             <div class="img-box">
-              <img
-                src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                alt="Motorcycle rally" class="slide-bg" />
+              <video class="slide-video"
+                poster="https://images.unsplash.com/photo-1558981806-ec527fa84c39?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                autoplay muted loop playsinline>
+                <source src="/assets/dummy.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
             </div>
           </div>
           <div class="swiper-slide image-slider">
@@ -44,9 +47,12 @@
           <div class="swiper-slide image-slider">
             <h4>2014</h4>
             <div class="img-box">
-              <img
-                src="https://images.unsplash.com/photo-1622185135825-d34b40aa03ef?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Motorcycle rally" class="slide-bg" />
+              <video class="slide-video"
+                poster="https://images.unsplash.com/photo-1558981806-ec527fa84c39?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                autoplay muted loop playsinline>
+                <source src="/assets/dummy.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
             </div>
           </div>
           <div class="swiper-slide image-slider">
@@ -60,9 +66,12 @@
           <div class="swiper-slide image-slider">
             <h4>2016</h4>
             <div class="img-box">
-              <img
-                src="https://images.unsplash.com/photo-1704073665735-a6fd2774514d?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Motorcycle rally" class="slide-bg" />
+              <video class="slide-video"
+                poster="https://images.unsplash.com/photo-1558981806-ec527fa84c39?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                autoplay muted loop playsinline>
+                <source src="/assets/dummy.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
             </div>
           </div>
         </div>
@@ -167,32 +176,100 @@
 
   <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
   <script>
+    // document.addEventListener("DOMContentLoaded", function () {
+    //   const imageSwiper = new Swiper(".image-swiper", {
+    //     loop: true,
+    //     slidesPerView: 5,
+    //     centeredSlides: true,
+    //     spaceBetween: 12,
+    //     autoplay: {
+    //       delay: 5000,
+    //       disableOnInteraction: false,
+    //     },
+    //     breakpoints: {
+    //       0: { // for mobile
+    //         slidesPerView: 1.2,
+    //       },
+    //       768: { // tablet and above
+    //         slidesPerView: 2.4,
+    //       },
+    //       1024: { // desktop
+    //         slidesPerView: 5,
+    //       },
+    //       1600: { // desktop
+    //         slidesPerView: 7,
+    //       },
+    //       2400: { // desktop
+    //         slidesPerView: 8,
+    //       },
+    //     },
+    //   });
+
+    //   const contentSwiper = new Swiper(".swiper-content", {
+    //     loop: true,
+    //     slidesPerView: 1,
+    //     allowTouchMove: false,
+    //     effect: "fade",
+    //     fadeEffect: {
+    //       crossFade: true,
+    //     },
+    //     navigation: {
+    //       nextEl: ".swiper-button-next",
+    //       prevEl: ".swiper-button-prev",
+    //     },
+    //   });
+
+    //   // Background update
+    //   const updateBlurredImage = () => {
+    //     const activeSlide = document.querySelector(
+    //       ".image-swiper .swiper-slide-active img"
+    //     );
+    //     const blurredBg = document.querySelector(".blurred-bg");
+    //     if (activeSlide && blurredBg) {
+    //       blurredBg.style.opacity = 0;
+    //       setTimeout(() => {
+    //         blurredBg.src = activeSlide.src;
+    //         blurredBg.style.opacity = 1;
+    //       }, 300);
+    //     }
+    //   };
+
+    //   updateBlurredImage();
+
+    //   // Sync when image swiper changes
+    //   imageSwiper.on("slideChange", () => {
+    //     contentSwiper.slideToLoop(imageSwiper.realIndex);
+    //     updateBlurredImage();
+    //   });
+
+    //   // Sync when content swiper changes (via arrows)
+    //   contentSwiper.on("slideChange", () => {
+    //     imageSwiper.slideToLoop(contentSwiper.realIndex);
+    //     updateBlurredImage();
+    //   });
+
+    //   // Click on image to change both
+    //   document.querySelectorAll(".image-swiper .swiper-slide").forEach((slide, index) => {
+    //     slide.addEventListener("click", () => {
+    //       imageSwiper.slideToLoop(index);
+    //       contentSwiper.slideToLoop(index);
+    //       updateBlurredImage();
+    //     });
+    //   });
+    // });
+
     document.addEventListener("DOMContentLoaded", function () {
       const imageSwiper = new Swiper(".image-swiper", {
         loop: true,
         slidesPerView: 5,
         centeredSlides: true,
         spaceBetween: 12,
-        // autoplay: {
-        //   delay: 5000,
-        //   disableOnInteraction: false,
-        // },
         breakpoints: {
-          0: { // for mobile
-            slidesPerView: 1.2,
-          },
-          768: { // tablet and above
-            slidesPerView: 2.4,
-          },
-          1024: { // desktop
-            slidesPerView: 5,
-          },
-          1600: { // desktop
-            slidesPerView: 7,
-          },
-          2400: { // desktop
-            slidesPerView: 8,
-          },
+          0: { slidesPerView: 1.2 },
+          768: { slidesPerView: 2.4 },
+          1024: { slidesPerView: 5 },
+          1600: { slidesPerView: 7 },
+          2400: { slidesPerView: 8 },
         },
       });
 
@@ -201,50 +278,68 @@
         slidesPerView: 1,
         allowTouchMove: false,
         effect: "fade",
-        fadeEffect: {
-          crossFade: true,
-        },
+        fadeEffect: { crossFade: true },
         navigation: {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
         },
       });
 
-      // Background update
+      // Update blurred background
       const updateBlurredImage = () => {
-        const activeSlide = document.querySelector(
-          ".image-swiper .swiper-slide-active img"
+        const activeMedia = document.querySelector(
+          ".image-swiper .swiper-slide-active .slide-bg, .image-swiper .swiper-slide-active .slide-video"
         );
         const blurredBg = document.querySelector(".blurred-bg");
-        if (activeSlide && blurredBg) {
+
+        if (activeMedia && blurredBg) {
           blurredBg.style.opacity = 0;
           setTimeout(() => {
-            blurredBg.src = activeSlide.src;
+            if (activeMedia.tagName.toLowerCase() === "img") {
+              blurredBg.src = activeMedia.src;
+            } else if (activeMedia.tagName.toLowerCase() === "video") {
+              blurredBg.src = activeMedia.getAttribute("poster") || "https://via.placeholder.com/1920x1080";
+            }
             blurredBg.style.opacity = 1;
           }, 300);
         }
       };
 
-      updateBlurredImage();
+      // Play/pause videos
+      const handleVideoPlayback = () => {
+        document.querySelectorAll(".slide-video").forEach(video => {
+          video.pause();
+        });
+        const activeVideo = document.querySelector(".image-swiper .swiper-slide-active .slide-video");
+        if (activeVideo) {
+          activeVideo.play();
+        }
+      };
 
-      // Sync when image swiper changes
+      // Init
+      updateBlurredImage();
+      handleVideoPlayback();
+
+      // Sync sliders + update
       imageSwiper.on("slideChange", () => {
         contentSwiper.slideToLoop(imageSwiper.realIndex);
         updateBlurredImage();
+        handleVideoPlayback();
       });
 
-      // Sync when content swiper changes (via arrows)
       contentSwiper.on("slideChange", () => {
         imageSwiper.slideToLoop(contentSwiper.realIndex);
         updateBlurredImage();
+        handleVideoPlayback();
       });
 
-      // Click on image to change both
+      // Click on image/video to change both
       document.querySelectorAll(".image-swiper .swiper-slide").forEach((slide, index) => {
         slide.addEventListener("click", () => {
           imageSwiper.slideToLoop(index);
           contentSwiper.slideToLoop(index);
           updateBlurredImage();
+          handleVideoPlayback();
         });
       });
     });
