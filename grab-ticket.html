@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.cdnfonts.com/css/guardian-sans" rel="stylesheet" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet" />
+
+  <title>Document</title>
+  <link rel="stylesheet" href="styles/style.css" />
+</head>
+
+<body>
+  <section class="blank"></section>
+  <section class="grab-ticket-card" id="ticketCard">
+    <div class="flex-container">
+      <div class="content">
+        <h4>Grab your Ticket Now</h4>
+        <p>Don’t miss out on your chance to buy tickets for yourself or avail group bookings for a great deal! </p>
+      </div>
+      <a href="#" class="btn-style">
+        Buy Tickets
+      </a>
+    </div>
+    <button class="close-btn" id="closeBtn">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M14 1.40951L12.59 -0.000488281L7 5.58951L1.41 -0.000488281L0 1.40951L5.59 6.99951L0 12.5895L1.41 13.9995L7 8.40951L12.59 13.9995L14 12.5895L8.41 6.99951L14 1.40951Z"
+          fill="white" />
+      </svg>
+    </button>
+  </section>
+  <section class="blank"></section>
+  <script>
+    const ticketCard = document.getElementById('ticketCard');
+    const closeBtn = document.getElementById('closeBtn');
+    let isCardShown = false;
+    let timeoutId;
+
+    // Function to show the card
+    function showCard() {
+      if (!isCardShown) {
+        ticketCard.classList.add('show');
+        isCardShown = true;
+
+        // Clear the timeout if card is shown via scroll
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+        }
+      }
+    }
+
+    // Function to hide the card
+    function hideCard() {
+      ticketCard.classList.remove('show');
+      isCardShown = false;
+    }
+
+    // Show card after 3 seconds
+    timeoutId = setTimeout(showCard, 3000);
+
+    // Show card when user scrolls 50% of the page
+    function checkScroll() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
+
+      if (scrollPercent >= 50) {
+        showCard();
+        // Remove scroll listener once card is shown
+        window.removeEventListener('scroll', checkScroll);
+      }
+    }
+
+    // Add scroll event listener
+    window.addEventListener('scroll', checkScroll);
+
+    // Close button functionality
+    closeBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      hideCard();
+    });
+  </script>
+</body>
+
+</html>
