@@ -1083,5 +1083,253 @@ h4 {
 }
 .discover-goa-section .swiper-pagination .swiper-pagination-bullet-active {
   width: 54px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
+}
+
+.unforgettable-rides-section {
+  padding: 64px 20px;
+  background-color: #000;
+  position: relative;
+  /* Navigation arrow */
+}
+.unforgettable-rides-section .rides-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.unforgettable-rides-section .rides-title {
+  font-size: 40px;
+  line-height: 48px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  color: white;
+  font-family: GuardianSansXCond Semibold;
+  margin-bottom: 40px;
+}
+.unforgettable-rides-section .ride-card {
+  position: relative;
+  height: 360px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.unforgettable-rides-section .ride-card::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 207px;
+  left: 0px;
+  bottom: 0px;
+  background: linear-gradient(355.81deg, #181818 2.79%, rgba(24, 24, 24, 0.741909) 66.56%, rgba(24, 24, 24, 0.315427) 85.75%, rgba(24, 24, 24, 0) 96%);
+}
+.unforgettable-rides-section .ride-card img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.unforgettable-rides-section .card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  padding: 18px 16px;
+}
+.unforgettable-rides-section .card-title {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  color: #fff;
+  font-family: GuardianSansXCond Semibold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.unforgettable-rides-section .nav-arrow {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+.unforgettable-rides-section .nav-arrow:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+@media (max-width: 1199px) {
+  .unforgettable-rides-section .rides-grid {
+    margin-right: -20px;
+  }
+  .unforgettable-rides-section .rides-title {
+    font-size: 28px;
+    line-height: 32px;
+  }
+}
+@media (max-width: 767px) {
+  .unforgettable-rides-section .rides-grid {
+    margin-right: -20px;
+  }
+  .unforgettable-rides-section .rides-title {
+    font-size: 28px;
+    line-height: 32px;
+  }
+}
+.unforgettable-rides-section .arrow-section {
+  max-width: 1280px;
+  position: relative;
+  position: absolute;
+  width: 100%;
+  margin: 0 auto;
+  bottom: 230px;
+  left: 0;
+  right: 0;
+}
+.unforgettable-rides-section .arrow-section .arrow-custom {
+  width: 54px;
+  height: 54px;
+  background: rgba(255, 255, 255, 0.16);
+  -webkit-backdrop-filter: blur(11.365px);
+          backdrop-filter: blur(11.365px);
+  border-radius: 100px;
+}
+@media only screen and (max-width: 767px) {
+  .unforgettable-rides-section .arrow-section .arrow-custom {
+    display: none;
+  }
+}
+.unforgettable-rides-section .arrow-section .arrow-custom::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 100px;
+  padding: 1.23px;
+  background: linear-gradient(-40deg, rgba(255, 255, 255, 0.2), #fff);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: -1;
+}
+.unforgettable-rides-section .arrow-section .arrow-custom::after {
+  font-size: 14px;
+  color: white;
+}
+
+.our-partners-section {
+  padding: 64px 20px;
+  background-color: #000;
+  overflow: hidden;
+  /* Placeholder logo styling */
+  /* Speed variations */
+  /* Pause on hover */
+}
+.our-partners-section .partners-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-bottom: 60px;
+}
+.our-partners-section .partners-title {
+  font-size: 40px;
+  line-height: 48px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  color: white;
+  font-family: GuardianSansXCond Semibold;
+}
+@media only screen and (max-width: 767px) {
+  .our-partners-section .partners-title {
+    font-size: 28px;
+    line-height: 32px;
+  }
+}
+.our-partners-section .marquee-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.our-partners-section .marquee-row {
+  overflow: hidden;
+  white-space: nowrap;
+  margin-bottom: 40px;
+  position: relative;
+}
+.our-partners-section .marquee-track {
+  display: inline-flex;
+  will-change: transform;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.our-partners-section .marquee-track.left {
+  animation-name: marquee-left;
+}
+.our-partners-section .marquee-track.right {
+  animation-name: marquee-right;
+}
+.our-partners-section .partner-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100px;
+  height: 80px;
+  margin: 0 20px;
+  flex-shrink: 0;
+  opacity: 0.6;
+  filter: grayscale(100%);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.our-partners-section .partner-logo:hover {
+  opacity: 1;
+  filter: grayscale(0);
+}
+.our-partners-section .partner-logo img {
+  max-width: 120px;
+  max-height: 50px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.our-partners-section .logo-placeholder {
+  width: 120px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+@keyframes marquee-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.our-partners-section .speed-40 {
+  animation-duration: 40s;
+}
+.our-partners-section .speed-60 {
+  animation-duration: 60s;
+}
+.our-partners-section .speed-30 {
+  animation-duration: 30s;
+}
+.our-partners-section .marquee-row:hover .marquee-track {
+  animation-play-state: paused;
 }/*# sourceMappingURL=style.css.map */

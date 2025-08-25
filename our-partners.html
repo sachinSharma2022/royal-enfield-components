@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.cdnfonts.com/css/guardian-sans" rel="stylesheet" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet" />
+
+  <title>Document</title>
+  <link rel="stylesheet" href="styles/style.css" />
+
+  <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+</head>
+
+<body>
+  <section class="blank"></section>
+  <section class="our-partners-section">
+    <div class="partners-container">
+      <h2 class="partners-title">Our Partners</h2>
+    </div>
+
+    <div class="marquee-container">
+      <!-- Forward Row -->
+      <div class="marquee-row left">
+        <div class="marquee-track left speed-40">
+          <div class="partner-logo">
+            <div class="logo-placeholder"><img src="/assets/logo/logo1.png" /></div>
+          </div>
+          <div class="partner-logo">
+            <div class="logo-placeholder"><img src="/assets/logo/logo2.png" /></div>
+          </div>
+          <div class="partner-logo">
+            <div class="logo-placeholder"><img src="/assets/logo/logo3.png" /></div>
+          </div>
+          <div class="partner-logo">
+            <div class="logo-placeholder"><img src="/assets/logo/logo4.png" /></div>
+          </div>
+          <div class="partner-logo">
+            <div class="logo-placeholder"><img src="/assets/logo/logo1.png" /></div>
+          </div>
+          <div class="partner-logo">
+            <div class="logo-placeholder"><img src="/assets/logo/logo2.png" /></div>
+          </div>
+          <div class="partner-logo">
+            <div class="logo-placeholder"><img src="/assets/logo/logo3.png" /></div>
+          </div>
+          <div class="partner-logo">
+            <div class="logo-placeholder"><img src="/assets/logo/logo4.png" /></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reverse Row -->
+      <div class="marquee-row">
+        <div class="marquee-track right speed-30">
+          <div class="partner-logo">
+            <div class="logo-placeholder"><img src="/assets/logo/logo1.png" /></div>
+          </div>
+          <div class="partner-logo">
+            <div class="logo-placeholder"><img src="/assets/logo/logo2.png" /></div>
+          </div>
+          <div class="partner-logo">
+            <div class="logo-placeholder"><img src="/assets/logo/logo3.png" /></div>
+          </div>
+          <div class="partner-logo">
+            <div class="logo-placeholder"><img src="/assets/logo/logo4.png" /></div>
+          </div>
+          <div class="partner-logo">
+            <div class="logo-placeholder"><img src="/assets/logo/logo1.png" /></div>
+          </div>
+          <div class="partner-logo">
+            <div class="logo-placeholder"><img src="/assets/logo/logo2.png" /></div>
+          </div>
+          <div class="partner-logo">
+            <div class="logo-placeholder"><img src="/assets/logo/logo3.png" /></div>
+          </div>
+          <div class="partner-logo">
+            <div class="logo-placeholder"><img src="/assets/logo/logo4.png" /></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </section>
+  <section class="blank"></section>
+
+  <script>
+    document.querySelectorAll(".marquee-row").forEach((row) => {
+      const track = row.querySelector(".marquee-track");
+      const direction = row.dataset.direction || "left";
+      const speed = parseFloat(row.dataset.speed) || 50;
+
+      // duplicate only once
+      if (!track.dataset.duplicated) {
+        track.innerHTML += track.innerHTML;
+        track.dataset.duplicated = "true";
+      }
+
+      let offset = 0;
+      let lastTime = performance.now();
+      const resetPoint = track.scrollWidth / 2; // 👈 important: only half width
+
+      function loop(now) {
+        const delta = (now - lastTime) / 1000;
+        lastTime = now;
+        const move = speed * delta;
+
+        if (direction === "left") {
+          offset -= move;
+          if (Math.abs(offset) >= resetPoint) {
+            offset = 0; // reset exactly at half
+          }
+        } else {
+          offset += move;
+          if (offset >= resetPoint) {
+            offset = 0;
+          }
+        }
+
+        track.style.transform = `translateX(${offset}px)`;
+        requestAnimationFrame(loop);
+      }
+
+      requestAnimationFrame(loop);
+    });
+
+  </script>
+
+
+</body>
+
+</html>
